@@ -15,6 +15,11 @@
   }
 }
 
+::placeholder {
+  color: rgb(87, 87, 87);
+  opacity: 1; /* Firefox */
+}
+
 
 .hidden-link {
   color: aliceblue;
