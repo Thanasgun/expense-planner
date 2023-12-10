@@ -1,0 +1,142 @@
+<div class="card-warpper">
+  <div class="card border-0">
+    <div class="detail">
+      <div class="card-body">
+        <div class="card-title">
+          <!-- <p>something a-ming-a-boo</p> -->
+        </div>
+        <div class="card-text">
+          <form [formGroup]="form" novalidate>
+            <div class="row px-3 g-4">
+              <div class="col-md-10">
+                <input
+                  formControlName="income"
+                  class="form-control"
+                  type="number"
+                  onlyNumber
+                  name="income"
+                  placeholder="Income"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                  [ngClass]="{ 'is-invalid': isInvalid(form, 'income') }"
+                />
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <button
+                    class="btn btn-outline-secondary"
+                    (click)="clearLocal()"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="row px-3 align-items-center">
+              <div class="col-md-12">
+                <div class="text-center mt-4 mb-3">
+                  <a class="btn btn-success" (click)="addExpense()">
+                    <span class="me-2">Add</span>
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+
+              <ng-container
+                *ngFor="let item of expenseForms.controls; let idx = index"
+                formArrayName="expenses"
+              >
+                <div class="row g-1" formGroupName="{{ idx }}">
+                  <div class="col-md-4">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Detail"
+                      formControlName="detail"
+                      [ngClass]="{ 'is-invalid': isInvalid(item, 'detail') }"
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <input
+                      class="form-control"
+                      type="number"
+                      placeholder="Amount"
+                      formControlName="amount"
+                      (keypress)="
+                        ($event.charCode >= 48 && $event.charCode < 58)
+                      "
+                      [ngClass]="{ 'is-invalid': isInvalid(item, 'amount') }"
+                    />
+                  </div>
+                  <div class="col-md-4">
+                    <div class="row g-1">
+                      <div
+                        [class]="
+                          item.get('period')?.value == 'custom'
+                            ? 'col-md-7'
+                            : 'col-md-12'
+                        "
+                      >
+                        <select
+                          class="form-select"
+                          formControlName="period"
+                          [ngClass]="{
+                            'is-invalid': isInvalid(item, 'period')
+                          }"
+                        >
+                          <option value="" selected disabled>-</option>
+                          <option
+                            *ngFor="let item of periodOptions; let idx = index"
+                            [ngValue]="item.value"
+                          >
+                            {{ item.display }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-5">
+                        <div *ngIf="item.value.period == 'custom'">
+                          <input
+                            class="form-control"
+                            type="number"
+                            (keypress)="
+                              ($event.charCode >= 48 && $event.charCode < 58)
+                            "
+                            placeholder="days"
+                            max="31"
+                            min="1"
+                            formControlName="periodDay"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="text-end">
+                      <a
+                        class="btn btn-outline-danger"
+                        (click)="removeExpense(idx)"
+                      >
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="row px-3 my-4">
+              <div class="card">
+                <app-result></app-result>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="row text-end">
+          <a class="hidden-link" href=""><small>Thanathorn G.</small></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

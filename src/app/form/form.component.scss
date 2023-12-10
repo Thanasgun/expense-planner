@@ -1,0 +1,22 @@
+.card-warpper {
+  padding: 0.2rem;
+  background: linear-gradient(to right, rgb(90, 107, 89), rgb(106, 84, 124));
+  border-radius: 6px;
+}
+
+.card {
+  .detail {
+    width: 100%;
+  }
+
+  .card-footer {
+    background: linear-gradient(to right, rgb(90, 107, 89), rgb(106, 84, 124));
+    color: aliceblue;
+  }
+}
+
+
+.hidden-link {
+  color: aliceblue;
+  text-decoration: none;
+}

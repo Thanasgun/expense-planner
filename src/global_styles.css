@@ -1,0 +1,32 @@
+/* Add application styles & imports to this file! */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.css';
+
+body {
+  background-color: #1b1b1b;
+  color: aliceblue;
+}
+
+.card {
+  background-color: rgb(37, 37, 37);
+  color: aliceblue;
+  border-color: rgb(87, 87, 87);
+}
+
+.form-control {
+  background-color: rgb(37, 37, 37);
+  color: aliceblue;
+  border-color: rgb(87, 87, 87);
+}
+
+.form-control:focus {
+  background-color: rgb(87, 87, 87);
+  color: aliceblue;
+  border-color: rgb(87, 87, 87);
+}
+
+.form-select {
+  background-color: rgb(37, 37, 37);
+  color: aliceblue;
+  border-color: rgb(87, 87, 87);
+}
