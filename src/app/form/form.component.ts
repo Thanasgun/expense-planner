@@ -94,7 +94,6 @@ export class FormComponent implements OnInit {
 
     valueChanges.pipe(skip(1), debounceTime(1500)).subscribe((value: any) => {
       this.triggerCalculate();
-      this.localService.setExpenseData(this.form.value);
     });
   }
 
@@ -152,6 +151,7 @@ export class FormComponent implements OnInit {
   }
 
   protected triggerCalculate() {
+    this.localService.setExpenseData(this.form.value);
     this.calculateService.setFormData = this.form;
     this.calculateService.search();
   }
