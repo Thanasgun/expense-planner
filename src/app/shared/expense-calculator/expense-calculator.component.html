@@ -17,24 +17,24 @@
   <h5><u>Expense</u></h5>
 </div>
 
-<ng-container *ngFor="let item of input.value?.expenses; let idx = index">
-  <div class="row ps-2">
+<ng-container *ngFor="let item of expenseForm?.controls; let idx = index">
+  <div *ngIf="item?.valid" class="row ps-2">
     <div class="col-md-9 text-capitalize">
-      <b>{{ item.detail }}</b>
-      {{ item.amount | number }}&nbsp;Baht,
-      <span *ngIf="item.period != 'custom'">
-        <b>{{ item.period }}</b>
+      {{ item?.value?.detail }}
+      {{ item?.value?.amount | number }}&nbsp;Baht,
+      <span *ngIf="item?.value?.period != 'custom'">
+        <b>{{ item?.value?.period }}</b>
       </span>
-      <span *ngIf="item.period == 'custom'">
-        {{ item.periodDay }} times a month
+      <span *ngIf="item?.value?.period == 'custom'">
+        {{ item?.value?.periodDay }} times a month
       </span>
     </div>
     <div class="col-md-3 text-end">
-      {{ calculateExpense(item) | number }}
+      {{ calculateExpense(item?.value) | number }}
       <span class="ms-2">Baht</span><br />
     </div>
   </div>
-  </ng-container>
+</ng-container>
 
 <div class="row mt-2">
   <div class="col-md-9">

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { Expense } from '../types';
 import { ExpenseCalculatorService } from './expense-calculator.service';
 
@@ -57,5 +57,8 @@ export class ExpenseCalculatorComponent implements OnInit {
         break;
     }
     return sum;
+  }
+  get expenseForm(){
+    return this.input.get('expenses') as FormArray;
   }
 }
